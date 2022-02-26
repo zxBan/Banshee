@@ -1,0 +1,6 @@
+#!/bin/bash
+dir=gg.txt
+awk'{print $(NF-2), $(NF-1), $NF}' $dir
+sed -i 's/today/yesterday/' $dir
+sed -i '5,8d' $dir
+awk '{printf "%-2d %s\n", NR, $0}' $dir
