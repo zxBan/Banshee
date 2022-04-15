@@ -1,0 +1,135 @@
+ifndef _passender_h_
+#define _passenger_h_
+#include <stdio.h>
+#include <string.h>
+
+typedef struct {
+        char surname [40];
+        char initials[8];
+        int  number_of_things;
+        char destination [50];
+        char departure_time [5];
+        int transfers;
+        int number_of_children;
+} passenger;
+#endif
+
+
+passenger.h
+
+
+Михайлов СИ 4 Алдан 14:29 3 0
+Савин АК 10 Рентон 17:49 1 1
+Смирнов КН 20 Анкоридж 02:57 0 0
+Дмитриев ГМ 100 Брашов 07:09 0 1
+Герасимова КД 3 Ленинск 14:12 2 0
+Леонтьев ВА 2 Варна 17:25 2 1
+Морозов CЛ 1 Новгород 05:52 1 3
+Бессонова АД 100 Токородзава 03:02 1 10
+Гуляева МД 3 Брешиа 05:04 3 0
+Гусева АА 3 Волгоград 19:03 0 0
+Ковалева АИ 10 Сыктывкар 04:06 0 0
+Кондратова ВМ 10 Грозный 23:00 0 10
+Макаров ОМ 1 Озёрск 21:20 2 2
+Ларионова ВА 9 Иркутск 21:26 2 2
+Мельникова СА 69 Понтеведра 00:11 1 0
+Николаев АМ 21 Эль-Кувейт 17:11 1 0
+Степанова ЯА 100 Сянтань 12:03 0 1
+Куприянов АД 1 Хаммамет 02:47 0 1
+Виноградова ЮМ 21 Рединг 08:35 0 1
+
+data.txt
+
+
+#include <stdio.h>
+#include <string.h>
+#include <errno.h>
+#include "passenger.h"
+
+void print_pas(passenger pas) {
+       printf("Name: %s %s; Things: %d; Destination: %s; Dep.time: %s; Transfers: %d; CHildren: %d \n", pas.surname, pas.initials, pas.number_of_things, pas.destination, pas.departure_time, pas.transfer>
+}
+
+int main(int argc, char* argv[]) {
+       if (argc !=3) {
+           printf("Incorrect input.Correct input is: /program/ /key (-f print file, -p solving)/ input filename/");
+           return 1;
+       }
+
+      FILE *input = fopen(argv[2], "r");
+       if (!input) {
+          printf("Can't open the file");
+          return 2;
+       }
+       passenger pas;
+
+       if(!strcmp(argv[1], "-f")) {
+       printf("|-----------------------------------------------------------------------------------------------|\n");
+       printf("|            Name         | Numberthings |     Destination     | Depart.time |transfers|children|\n");
+       printf("|-----------------------------------------------------------------------------------------------|\n");
+       while(fread(&pas, sizeof(passenger), 1 , input) == 1) {
+            printf("|\t%-15s \t%-s|\t%-9d|\t%15s\t|\t%-s|\t%-7d|%5d\t|\n",pas.surname, pas.initials, pas.number_of_things, pas.destination,pas.departure_time, pas.transfers, pas.number_of_children);
+       }
+       fseek(input, 0, SEEK_SET);
+       printf("|-----------------------------------------------------------------------------------------------|\n");
+       return 0;
+       }
+
+       if (!strcmp(argv[1], "-p")) {
+       int sum = 0;
+       int count = 0;
+       int pv;
+       scanf("%d",&pv); 
+       float srnumber = 0;
+       while(fread(&pas, sizeof(pas), 1 , input) == 1) {
+               sum += pas.number_of_things;
+               count += 1;
+       }
+       srnumber = sum / count;
+       fseek(input, 0, SEEK_SET);
+       int n=0;
+       printf("\n the number of passenger items is above average\n");
+       while(fread(&pas, sizeof(pas), 1 , input) ==1) {
+           if (pas.number_of_things > (srnumber + pv)) {
+              n++;
+             printf("%d. ", n);
+             print_pas(pas);
+           }
+       }
+       return 0;
+       }
+}
+
+dataBaseB.c
+
+
+
+
+#include <stdio.h>
+#include <string.h>
+#include <stdbool.h>
+#include <errno.h>
+#include "passenger.h"
+
+int main(int argc, char* argv[]){
+       if (argc != 3) {
+             printf("Incorrect input.Correct input is: /program/ /input_filename/ /output_filename/");
+             return 1;
+       }
+       passenger pas;
+       FILE *out = fopen(argv[2], "w");
+       if (!out) {
+             printf("Can't open the file");
+             return 2;
+       }
+       FILE *in_file = fopen(argv[1], "r");
+       while(!feof(in_file)) {
+             fscanf(in_file, "%s%s%d%s%s%d%d", pas.surname, pas.initials, &pas.number_of_things, pas.destination, pas.departure_time, &pas.transfers, &pas.number_of_children);
+             fwrite(&pas, sizeof(pas), 1, out);
+       }
+       fclose(in_file);
+       fclose(out);
+       return 0;
+}
+
+dataBasePr.c
