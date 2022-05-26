@@ -1,0 +1,12 @@
+aaaa	1	Tyger Tyger, burning bright,
+aaaa    2   In the forests of the night;
+aaac    3   What immortal hand or eye,
+aaac    4   Could frame thy fearful symmetry?
+aaae    5   In what distant deeps or skies.
+aaaf    6   Burnt the fire of thine eyes?
+aaag    7   On what wings dare he aspire?
+aaah    8   What the hand, dare seize the fire?
+aaaj    9   And what shoulder, & what art,
+aaax    10  Could twist the sinews of thy heart?
+aaay    11  And when thy heart began to beat,
+aaaz    12  What dread hand? & what dread feet?
